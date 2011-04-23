@@ -13,7 +13,9 @@ package Sound
 		public static var BGM_End:String = "BGMEnd";
 		
 		//se
-		
+		public static var SE_Btn:String = "SEButton";
+		public static var SE_Fire:String = "SEFire";
+		public static var SE_Hitted:String = "SEHitted";
 	}
 
 }

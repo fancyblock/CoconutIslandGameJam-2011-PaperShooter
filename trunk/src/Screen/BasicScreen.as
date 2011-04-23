@@ -2,6 +2,9 @@ package Screen
 {
 	import com.pblabs.screens.BaseScreen;
 	import flash.display.MovieClip;
+	import flash.display.SimpleButton;
+	import flash.events.MouseEvent;
+	import Sound.SoundEnums;
 	import Sound.SoundManager;
 	
 	/**
@@ -78,8 +81,18 @@ package Screen
 			m_BgmId = soundID;
 		}
 		
+		//set se to a button
+		protected function setButtonSE( btn:SimpleButton ):void
+		{
+			btn.addEventListener( MouseEvent.ROLL_OVER, _onRollOver );
+		}
 		
 		//------------------------------------------- event callback -------------------------------------------
+		
+		private function _onRollOver( evt:MouseEvent ):void
+		{
+			SoundManager.Singleton.PlaySE( SoundEnums.SE_Btn );
+		}
 		
 	}
 }

@@ -31,6 +31,9 @@ package Screen
 			
 			//set the bgm
 			this.setBGM( SoundEnums.BGM_Title );
+			
+			//set the button se
+			this.setButtonSE( m_btnStart );
 		}
 		
 		//------------------------------------------ private function -------------------------------------------

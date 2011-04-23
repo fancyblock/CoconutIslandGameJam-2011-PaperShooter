@@ -86,6 +86,10 @@ package Sound
 			m_soundLibs[SoundEnums.BGM_Title] = new bgm_title;
 			m_soundLibs[SoundEnums.BGM_Gaming] = new bgm_gaming;
 			m_soundLibs[SoundEnums.BGM_End] = new bgm_end;
+			
+			m_soundLibs[SoundEnums.SE_Btn] = new se_btn;
+			m_soundLibs[SoundEnums.SE_Fire] = new se_fire;
+			m_soundLibs[SoundEnums.SE_Hitted] = new se_hitted;
 		}
 		
 		//------------------------------- event callback -----------------------------------
