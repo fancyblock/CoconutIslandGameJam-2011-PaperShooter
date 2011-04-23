@@ -26,7 +26,7 @@ package GameLogic.FlyingObject
 		
 		function get Alive():Boolean;
 		
-		function set Alibe( val:Boolean ):void;
+		function set Alive( val:Boolean ):void;
 		
 		function get VerticalMC():MovieClip;
 		
