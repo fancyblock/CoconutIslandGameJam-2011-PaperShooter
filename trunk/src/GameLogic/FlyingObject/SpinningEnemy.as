@@ -47,7 +47,7 @@ package GameLogic.FlyingObject
 		private function onCollision(e:CollisionEvent):void {
 			Alive = false;
 			trace("Spinning Enemy is DEAD!!! " +e.collidedObject);
-			TweenMax.killTweensOf(this);
+			TweenMax.killTweensOf(this.Position);
 		}
 		
 		
