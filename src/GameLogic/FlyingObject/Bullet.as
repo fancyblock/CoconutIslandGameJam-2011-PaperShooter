@@ -2,6 +2,9 @@ package GameLogic.FlyingObject
 {
 	import Event.CollisionEvent;
 	
+	import Math.Collision.AABB3D;
+	import Math.Collision.Sphere3D;
+	
 	import Resource.ResourcePool;
 	
 	import flash.display.MovieClip;
@@ -16,52 +19,36 @@ package GameLogic.FlyingObject
 	public class Bullet extends BaseFlyingObject
 	{
 		public var speed:Vector3D;
-		private var m_playerID:int;
-		private var m_mcBulletV:MovieClip;
-		private var m_mcBulletH:MovieClip;
 		private var m_owner:IFlyingObject;
 		
 		public function Bullet(bulletType:int, owner:IFlyingObject)
 		{
 			speed = new Vector3D(1, 0, 0);
-			m_playerID = playerID;
 			
-			m_mcBulletV = ResourcePool.Singleton.GetBulletV(bulletType);
-			m_mcBulletH = ResourcePool.Singleton.GetBulletH(bulletType);
+			m_mcV = ResourcePool.Singleton.GetBulletV(bulletType);
+			m_mcH = ResourcePool.Singleton.GetBulletH(bulletType);
 			
 			m_owner = owner;
 			
 			addEventListener(CollisionEvent.TYPE, onCollision);
+			
+			//m_shape = new Sphere3D(10);
+			
+			( this.Shape as AABB3D ).min = new Vector3D( -10, -10, -10, 1 );
+			( this.Shape as AABB3D ).max = new Vector3D( 10, 10, 10, 1 );
+			
 		}
 		
 		public function get owner():IFlyingObject
 		{
 			return m_owner;
 		}
-
-		public function get playerID():int
-		{
-			return m_playerID;
-		}
-		
-		/**
-		 * @desc	return the movieclip for this aspect
-		 */
-		override public function get VerticalMC():MovieClip 
-		{ 
-			return m_mcBulletV;
-		}
-		
-		/**
-		 * @desc	return the movieclip for this aspect
-		 */
-		override public function get HorizontalMC():MovieClip 
-		{ 
-			return m_mcBulletH;
-		}	
 		
 		private function onCollision(e:CollisionEvent):void {
-			//Alive = false;
+			if(e.collidedObject == m_owner || e.collidedObject is Bullet)
+				return;
+				
+			Alive = false;
 			trace("Collides with " +e.collidedObject);
 		}
 

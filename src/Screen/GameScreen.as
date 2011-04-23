@@ -1,7 +1,11 @@
 package Screen
 {
+	import Event.SpawnMonsterEvent;
+	
 	import GameLogic.Battlefield;
+	import GameLogic.EnemySpawner;
 	import GameLogic.FlyingObject.DummyEnemy;
+	import GameLogic.FlyingObject.FlyingObjTypeEnums;
 	import GameLogic.FlyingObject.SpaceShip;
 	import GameLogic.ISpace;
 	
@@ -28,6 +32,8 @@ package Screen
 		
 		private var m_space:ISpace = null;
 		private var m_spaceship:SpaceShip = null;
+		
+		private var m_enemySpawner:EnemySpawner;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -59,12 +65,15 @@ package Screen
 			m_verView.AttachSpace( m_space );
 			m_horView.AttachSpace( m_space );
 			
+			//create the enemy spawner
+			m_enemySpawner = new EnemySpawner(m_space);
+			
 			//create your spaceship
 			m_spaceship = new SpaceShip();
 			m_space.AddObject( m_spaceship );
 			
 			// create the first enemy
-			m_space.AddObject( new DummyEnemy() );
+			m_enemySpawner.dispatchEvent(new SpawnMonsterEvent(FlyingObjTypeEnums.Enemy01));
 			
 			
 		}
@@ -74,6 +83,9 @@ package Screen
 		 */
 		override public function onFrame(delta:Number):void
 		{
+			//run enemy spawning logic
+			m_enemySpawner.Update( delta );
+			
 			//update the space
 			m_space.Update( delta );
 			

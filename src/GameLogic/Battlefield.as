@@ -1,13 +1,16 @@
 package GameLogic
 {
 	import Event.CollisionEvent;
-	import Math.Collision.AABB3D;
-	import Math.Collision.Shape3D;
 	
 	import GameLogic.FlyingObject.BaseFlyingObject;
 	import GameLogic.FlyingObject.Enemy;
 	import GameLogic.FlyingObject.IFlyingObject;
 	import GameLogic.ISpace;
+	
+	import Math.Collision.AABB3D;
+	import Math.Collision.Shape3D;
+	
+	import com.greensock.layout.AlignMode;
 	
 	import flash.geom.Vector3D;
 	
@@ -80,8 +83,22 @@ package GameLogic
 		 */
 		public function Update( delta:Number ):void
 		{
-			for each( var obj:IFlyingObject in m_objectList )
+			for( var i:int = 0; i < m_objectList.length; i++ )
 			{
+				var obj:IFlyingObject = IFlyingObject(m_objectList[i]);
+				
+				// remove dead objects destroyed last frame
+				if(!obj.Alive) {
+					m_objectList.splice(i, 1);
+					i--;
+					continue;
+				}
+			}
+			
+			for each( obj in m_objectList )
+			//for( var i:int = 0; i < m_objectList.length; i++ )
+			{
+				
 				// check for collisions
 				checkCollisions(obj);
 				checkEscapeObject( obj );
