@@ -2,6 +2,11 @@ package Math.Collision
 {
 	import flash.geom.Vector3D;
 
+	/**
+	 * ...
+	 * @author	Fred
+	 * @date	2011.04.23
+	 */	
 	public class AABB3D extends Shape3D
 	{
 		public var min:Vector3D;
