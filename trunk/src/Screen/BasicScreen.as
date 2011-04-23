@@ -2,6 +2,7 @@ package Screen
 {
 	import com.pblabs.screens.BaseScreen;
 	import flash.display.MovieClip;
+	import Sound.SoundManager;
 	
 	/**
 	 * @author	Hejiabin
@@ -16,6 +17,7 @@ package Screen
 		//------------------------------------------ private member ------------------------------------------
 		
 		private var m_ui:MovieClip = null;
+		private var m_BgmId:String = null;
 		
 		//------------------------------------------- public function -------------------------------------------
 		
@@ -45,19 +47,19 @@ package Screen
 		}
 		
 		/**
-		 * @desc	callback when hide
-		 */
-		override public function onHide():void
-		{
-			
-		}
-		
-		/**
 		 * @desc	callback when show
 		 */
 		override public function onShow():void
 		{
-			
+			SoundManager.Singleton.PlayBGM( m_BgmId );
+		}
+		
+		/**
+		 * @desc	callback when hide
+		 */
+		override public function onHide():void
+		{
+			SoundManager.Singleton.StopSound( m_BgmId );
 		}
 		
 		//------------------------------------------ private function -------------------------------------------
@@ -68,6 +70,12 @@ package Screen
 			this.m_ui = ui;
 			
 			this.addChild( m_ui );
+		}
+		
+		//set the background music of this screen
+		protected function setBGM( soundID:String ):void
+		{
+			m_BgmId = soundID;
 		}
 		
 		
