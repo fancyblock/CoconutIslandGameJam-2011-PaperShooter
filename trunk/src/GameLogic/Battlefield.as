@@ -1,19 +1,13 @@
 package GameLogic
 {
 	import Event.CollisionEvent;
-	
-	import GameLogic.FlyingObject.BaseFlyingObject;
+	import flash.geom.Vector3D;
 	import GameLogic.FlyingObject.Enemy;
 	import GameLogic.FlyingObject.IFlyingObject;
+	import GameLogic.FlyingObject.SpaceShip;
 	import GameLogic.ISpace;
-	
 	import Math.Collision.AABB3D;
-	import Math.Collision.Shape3D;
-	
-	import com.greensock.layout.AlignMode;
-	
-	import flash.geom.Vector3D;
-	
+
 	/**
 	 * ...
 	 * @author Hejiabin
@@ -102,6 +96,12 @@ package GameLogic
 				// check for collisions
 				checkCollisions(obj);
 				checkEscapeObject( obj );
+				
+				if ( obj is SpaceShip )
+				{
+					checkTarget( obj );
+				}
+				
 				obj.Update( delta );
 			}
 		}
@@ -150,6 +150,53 @@ package GameLogic
 		private function checkEscapeObject( obj:IFlyingObject ):void
 		{
 			//
+		}
+		
+		// Check if the player ship is aligned with some enmey in any dimension.
+		private function checkTarget( spaceShip:IFlyingObject ):void
+		{
+			for each( var obj:IFlyingObject in m_objectList )
+			{
+				if ( !( obj is Enemy ) )
+				{
+					continue;
+				}
+				
+				var enmey:Enemy = obj as Enemy;
+				var enemyAABB:AABB3D = obj.Shape as AABB3D;
+				
+				if (	spaceShip.Position.x > enemyAABB.position.x + enemyAABB.min.x &&
+						spaceShip.Position.x < enemyAABB.position.x + enemyAABB.max.x )
+				{
+					if ( !enmey.LockedOnH )
+					{
+						enmey.LockedOnH = true;	
+					}
+				}
+				else
+				{
+					if ( enmey.LockedOnH )
+					{
+						enmey.LockedOnH = false;
+					}
+				}
+				
+				if (	spaceShip.Position.y > enemyAABB.position.y + enemyAABB.min.y &&
+						spaceShip.Position.y < enemyAABB.position.y + enemyAABB.max.y )
+				{
+					if ( !enmey.LockedOnV )
+					{
+						enmey.LockedOnV = true;	
+					}
+				}
+				else
+				{
+					if ( enmey.LockedOnV )
+					{
+						enmey.LockedOnV = false;
+					}
+				}
+			}
 		}
 		
 		//-------------------------------- callback function --------------------------------

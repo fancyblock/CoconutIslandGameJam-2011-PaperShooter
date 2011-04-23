@@ -97,6 +97,11 @@ package Resource
 			return GetBullet(bulletType);
 		}
 		
+		public function GetLockOn():MovieClip
+		{
+			return new mcLockOnRes;
+		}
+		
 		public function GetEnemyV(enemyType:int):MovieClip {
 			return GetEnemy(enemyType);
 		}
