@@ -1,6 +1,8 @@
 package Screen
 {
 	import flash.display.MovieClip;
+	import GameLogic.Battlefield;
+	import GameLogic.FlyingObject.SpaceShip;
 	import GameLogic.ISpace;
 	import Screen.BasicScreen;
 	import View.HorizontalView;
@@ -21,6 +23,7 @@ package Screen
 		private var m_horView:HorizontalView = null;
 		
 		private var m_space:ISpace = null;
+		private var m_spaceship:SpaceShip = null;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -43,12 +46,18 @@ package Screen
 		 */
 		override public function onShow():void
 		{
-			//m_space = 
+			trace( "[Enter the Game]" );
+			
+			//create the battlefield
+			m_space = new Battlefield( 30, 30, 50 );
 			
 			//attach space to the views
 			m_verView.AttachSpace( m_space );
 			m_horView.AttachSpace( m_space );
 			
+			//create your spaceship
+			m_spaceship = new SpaceShip();
+			m_space.AddObject( m_spaceship );
 		}
 		
 		/**
@@ -56,7 +65,12 @@ package Screen
 		 */
 		override public function onFrame(delta:Number):void
 		{
-			//TODO: implement function
+			//update the space
+			m_space.Update( delta );
+			
+			//render the viewport
+			m_verView.Render();
+			m_horView.Render();
 		}
 		
 		/**

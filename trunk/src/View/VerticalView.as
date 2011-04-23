@@ -25,6 +25,14 @@ package View
 			
 		}
 		
+		/**
+		 * @desc	update function
+		 */
+		override public function Render():void
+		{
+			//TODO:
+		}
+		
 		//-------------------------------- private function --------------------------------
 		
 		//-------------------------------- callback function --------------------------------

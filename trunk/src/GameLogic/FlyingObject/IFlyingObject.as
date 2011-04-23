@@ -14,6 +14,10 @@ package GameLogic.FlyingObject
 		
 		function get Position():Vector3D;
 		
+		function set Position( val:Vector3D ):void;
+		
+		function get Alive():Boolean;
+		
 //		function get AABB():
 	}
 	
