@@ -64,7 +64,7 @@ package Screen
 			m_space.AddObject( m_spaceship );
 			
 			// create the first enemy
-			//m_space.AddObject( new DummyEnemy() );
+			m_space.AddObject( new DummyEnemy() );
 			
 			
 		}
