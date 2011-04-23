@@ -1,14 +1,15 @@
 package Screen
 {	
 	import flash.display.MovieClip;
+	import flash.display.SimpleButton;
+	import flash.events.MouseEvent;
+	import com.pblabs.engine.PBE;
 
 	public class TitleScreen extends BasicScreen
 	{
-		//------------------------------------------- static member -------------------------------------------
-		
-		//------------------------------------------- public member ------------------------------------------
-		
 		//------------------------------------------ private member ------------------------------------------
+		
+		private var m_btnStart:SimpleButton = null;
 		
 		//------------------------------------------- public function -------------------------------------------
 
@@ -20,11 +21,24 @@ package Screen
 			super();
 			
 			this.setUI( ( new ui ) as MovieClip );
+			
+			//get the ui elements
+			m_btnStart = this.Canvas.getChildByName( "btnStart" ) as SimpleButton;
+			
+			//attach event listener
+			m_btnStart.addEventListener( MouseEvent.CLICK, _onStart );
 		}
 		
 		//------------------------------------------ private function -------------------------------------------
 		
 		//------------------------------------------- event callback -------------------------------------------
+		
+		//callback when click [start] button
+		private function _onStart( evt:MouseEvent ):void
+		{
+			PBE.screenManager.pop();
+			PBE.screenManager.push( ScreenEnums.Game_Screen );
+		}
 
 	}
 }

@@ -1,11 +1,12 @@
 package
 {
-	import Screen.TitleScreen;
-	
 	import com.pblabs.engine.PBE;
-	
 	import flash.display.Sprite;
 	import flash.system.fscommand;
+	import Screen.GameScreen;
+	import Screen.TitleScreen;
+	import Screen.ScreenEnums;
+	import Screen.EndScreen;
 	
 	/**
 	 * @desc	
@@ -33,9 +34,11 @@ package
 			fscommand( "allowscale", "false" );
 			
 			//regisit the screens
-			PBE.screenManager.registerScreen( "TitleScreen", new TitleScreen( TitleScreen ) );
-
-			PBE.screenManager.push( "TitleScreen" );
+			PBE.screenManager.registerScreen( ScreenEnums.Title_Screen, new TitleScreen( TitleScreenRes ) );
+			PBE.screenManager.registerScreen( ScreenEnums.Game_Screen, new GameScreen( frameRes ) );
+	//		PBE.screenManager.registerScreen( ScreenEnums.End_Screen, new EndScreen( xxx ) );
+			
+			PBE.screenManager.push( ScreenEnums.Title_Screen );
 		}
 		
 		//------------------------------ private function ----------------------------------

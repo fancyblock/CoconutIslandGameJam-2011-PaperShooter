@@ -1,9 +1,12 @@
 package Screen
 {
 	import com.pblabs.screens.BaseScreen;
-	
 	import flash.display.MovieClip;
 	
+	/**
+	 * @author	Hejiabin
+	 * @date	2011.4.23
+	 */
 	public class BasicScreen extends BaseScreen
 	{
 		//------------------------------------------- static member -------------------------------------------
@@ -23,6 +26,14 @@ package Screen
 		{
 			//TODO: implement function
 			super();
+		}
+		
+		/**
+		 * @desc	return the canvas
+		 */
+		public function get Canvas():MovieClip
+		{
+			return m_ui;
 		}
 		
 		/**
@@ -58,6 +69,7 @@ package Screen
 			
 			this.addChild( m_ui );
 		}
+		
 		
 		//------------------------------------------- event callback -------------------------------------------
 		
