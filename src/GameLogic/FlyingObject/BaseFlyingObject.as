@@ -88,7 +88,7 @@ package GameLogic.FlyingObject
 		/**
 		 * @desc	set the alive value
 		 */
-		public function set Alibe( val:Boolean ):void { m_alive = val; }
+		public function set Alive( val:Boolean ):void { m_alive = val; }
 		
 		/**
 		 * @desc	return the movieclip for this aspect
