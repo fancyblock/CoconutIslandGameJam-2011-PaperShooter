@@ -24,12 +24,14 @@ package Math.Collision
 				else			
 					return Collision.intersects_AABB_Sphere(AABB3D(this), Sphere3D(shape));
 			}
-			else {
+			if(this is Sphere3D) {
 				if(shape is AABB3D)
 					return Collision.intersects_AABB_Sphere(AABB3D(shape), Sphere3D(this));
 				else
 					return Collision.intersects_Sphere_Sphere(Sphere3D(this), Sphere3D(shape));
 			}
+			else
+				return false;
 				
 		}
 		

@@ -58,6 +58,8 @@ package Screen
 			//create your spaceship
 			m_spaceship = new SpaceShip();
 			m_space.AddObject( m_spaceship );
+			
+			
 		}
 		
 		/**
@@ -71,6 +73,10 @@ package Screen
 			//render the viewport
 			m_verView.Render();
 			m_horView.Render();
+			
+			// focus fix
+			if(stage)
+				stage.focus = this;
 		}
 		
 		/**

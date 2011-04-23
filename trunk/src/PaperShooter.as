@@ -37,6 +37,7 @@ package
 			//startup the engine
 			PBE.startup( this );
 			
+			
 			//flash player setting
 			fscommand( "allowscale", "false" );
 			
@@ -46,6 +47,7 @@ package
 	//		PBE.screenManager.registerScreen( ScreenEnums.End_Screen, new EndScreen( xxx ) );
 			
 			PBE.screenManager.push( ScreenEnums.Title_Screen );
+			
 		}
 		
 		//------------------------------ private function ----------------------------------

@@ -1,11 +1,15 @@
 package GameLogic.FlyingObject
 {
-	import flash.display.MovieClip;
-	import GameLogic.FlyingObject.IFlyingObject;
 	import GameLogic.FlyingObject.BaseFlyingObject;
+	import GameLogic.FlyingObject.IFlyingObject;
+	
+	import Resource.ResourcePool;
+	
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.core.InputKey;
-	import Resource.ResourcePool;
+	
+	import flash.display.MovieClip;
+	import flash.geom.Vector3D;
 	
 	/**
 	 * ...
@@ -16,6 +20,9 @@ package GameLogic.FlyingObject
 		//-------------------------------- static member ---------------------------------
 		
 		static private const SPEED:Number = 5; 
+		static private const BULLET_SPEED:Number = 120;
+		static public const PLAYER_1:int = 1;
+		static public const PLAYER_2:int = 2;
 		
 		//-------------------------------- private member --------------------------------
 		
@@ -82,6 +89,27 @@ package GameLogic.FlyingObject
 		}
 		
 		//-------------------------------- private function --------------------------------
+		private function spawnBullet(playerID:int):void {
+			
+			var bulletType:int;
+			var speed:Vector3D;
+			if(playerID == SpaceShip.PLAYER_1) {
+				bulletType = FlyingObjTypeEnums.Bullet01; 
+			}
+			else {
+				bulletType = FlyingObjTypeEnums.Bullet02;				
+			}
+	
+			var bullet:Bullet = new Bullet(bulletType, this);
+			bullet.speed = new Vector3D(0, 0, BULLET_SPEED);
+			bullet.Position.x = Position.x;
+			bullet.Position.y = Position.y;
+			bullet.Position.z = Position.z;
+			
+			m_host.AddObject(bullet);
+			
+			trace("spawn bullet");
+		}
 		
 		private function inputDectect():void
 		{
@@ -104,6 +132,16 @@ package GameLogic.FlyingObject
 			else if ( PBE.isKeyDown( InputKey.DOWN ) )	//down
 			{
 				incY = -SPEED;
+			}
+			
+			// Player 1 shoots
+			if( PBE.inputManager.keyJustPressed(InputKey.W.keyCode)) {
+				spawnBullet(PLAYER_1);
+			}
+
+			// Player 2 shoots
+			if( PBE.inputManager.keyJustPressed(InputKey.SPACE.keyCode)) {
+				spawnBullet(PLAYER_2);
 			}
 			
 			//change the position
