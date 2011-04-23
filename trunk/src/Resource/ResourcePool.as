@@ -149,6 +149,15 @@ package Resource
 			return GetBullet(bulletType);
 		}
 		
+		public function GetDummyEnemyV():MovieClip
+		{
+			return new mcDummyVRes;
+		}
+		
+		public function GetDummyEnemyH():MovieClip
+		{
+			return new mcDummyHRes;
+		}
 		
 		//-------------------------------- private function --------------------------------
 		

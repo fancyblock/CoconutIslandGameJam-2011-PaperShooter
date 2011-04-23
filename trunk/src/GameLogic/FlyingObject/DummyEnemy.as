@@ -27,39 +27,37 @@ package GameLogic.FlyingObject
 		{
 			super();
 			
+			_mcH = ResourcePool.Singleton.GetDummyEnemyH();
+			_mcV = ResourcePool.Singleton.GetDummyEnemyV();
+		}
+		
+		override public function onAdd():void 
+		{
+			this.Position.x = this.m_host.XLength / 2;
+			this.Position.y = this.m_host.YLength / 2;
+			this.Position.z = this.m_host.ZLength;
+			
+			( this.Shape as AABB3D ).position = this.Position;
+			( this.Shape as AABB3D ).min = new Vector3D( -10, -10, -10, 1 );
+			( this.Shape as AABB3D ).max = new Vector3D( 10, 10, 10, 1 );
+			
 			addEventListener( CollisionEvent.TYPE, onCollision );
 			
-			_mcH = ResourcePool.Singleton.GetSpaceShipH();
-			_mcV = ResourcePool.Singleton.GetSpaceShipV();
+			Alive = true;
+		}		
+		
+		override public function Update( delta:Number ):void
+		{
+			this.Position.z -= 1;
 		}
 		
 		private function onCollision( e:CollisionEvent ):void
 		{
 			if ( e.collidedObject is Bullet )
 			{
-				_mcH.alpha = _mcV.alpha = 0.2;
+				removeEventListener( CollisionEvent.TYPE, onCollision );
+				Alive = false;
 			}
-		}
-		
-		override public function get Alive():Boolean
-		{
-			return true;
-		}
-		
-		override public function onAdd():void 
-		{
-			this.Position.z = this.m_host.ZLength;
-			this.Position.x = this.m_host.XLength / 2;
-			this.Position.y = this.m_host.YLength / 2;
-			
-			( this.Shape as AABB3D ).position = this.Position;
-			( this.Shape as AABB3D ).min = new Vector3D( -10, -10, -10, 1 );
-			( this.Shape as AABB3D ).max = new Vector3D( 10, 10, 10, 1 );
-		}		
-		
-		override public function Update( delta:Number ):void
-		{
-			//this.Position.z -= 1;
 		}
 	}
 }
