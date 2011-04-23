@@ -27,6 +27,8 @@ package
 		 */
 		public function PaperShooter()
 		{
+			trace( "[Game Start]" );
+			
 			//startup the engine
 			PBE.startup( this );
 			

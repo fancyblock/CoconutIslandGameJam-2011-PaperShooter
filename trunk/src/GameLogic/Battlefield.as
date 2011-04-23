@@ -86,6 +86,7 @@ package GameLogic
 		public function AddObject( obj:IFlyingObject ):void
 		{
 			m_objectList.push( obj );
+			obj.Host = this;
 		}
 		
 		//-------------------------------- private function --------------------------------

@@ -1,6 +1,8 @@
 package GameLogic.FlyingObject
 {
+	import flash.display.MovieClip;
 	import GameLogic.FlyingObject.IFlyingObject;
+	import GameLogic.ISpace;
 	
 	import Math.Collision.Shape3D;
 	
@@ -18,6 +20,7 @@ package GameLogic.FlyingObject
 		
 		//-------------------------------- private member --------------------------------
 		
+		protected var m_host:ISpace = null;
 		private var m_shape:Shape3D;
 		
 		//-------------------------------- public function --------------------------------
@@ -27,7 +30,22 @@ package GameLogic.FlyingObject
 		 */
 		public function BaseFlyingObject() 
 		{
+			m_shape = new Shape3D();
 		}
+		
+		/**
+		 * @desc	set the host of this object
+		 */
+		public function set Host( host:ISpace ):void
+		{
+			m_host = host;
+			onAdd();
+		}
+		
+		/**
+		 * @desc	callback when this object be add to the space
+		 */
+		public function onAdd():void {}
 		
 		/**
 		 * @desc	return the positon of this object
@@ -64,6 +82,16 @@ package GameLogic.FlyingObject
 		 * @desc	return the state of this object
 		 */
 		public function get Alive():Boolean { return true; }
+		
+		/**
+		 * @desc	return the movieclip for this aspect
+		 */
+		public function get VerticalMC():MovieClip { return null; }
+		
+		/**
+		 * @desc	return the movieclip for this aspect
+		 */
+		public function get HorizontalMC():MovieClip { return null; }
 		
 		//-------------------------------- private function --------------------------------
 		
