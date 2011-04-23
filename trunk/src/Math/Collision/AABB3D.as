@@ -51,6 +51,10 @@ package Math.Collision
 			p.x += position.x;
 			p.y += position.y;
 			p.z += position.z;
+						
+			r.x += position.x;
+			r.y += position.y;
+			r.z += position.z;
 
 			
 			return r;

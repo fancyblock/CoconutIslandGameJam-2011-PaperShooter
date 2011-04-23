@@ -10,10 +10,10 @@ package Math.Collision
 	{
 		public var radius:Number;
 		
-		public function Sphere3D()
+		public function Sphere3D(radius:Number = 1)
 		{
 			super();
-			radius = 0;
+			this.radius = radius;
 		}
 	}
 }

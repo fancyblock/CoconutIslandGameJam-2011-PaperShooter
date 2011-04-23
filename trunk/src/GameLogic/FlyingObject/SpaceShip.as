@@ -1,7 +1,11 @@
 package GameLogic.FlyingObject
 {
+	import Event.CollisionEvent;
+	
 	import GameLogic.FlyingObject.BaseFlyingObject;
 	import GameLogic.FlyingObject.IFlyingObject;
+	
+	import Math.Collision.AABB3D;
 	
 	import Resource.ResourcePool;
 	
@@ -39,6 +43,10 @@ package GameLogic.FlyingObject
 			//set the mc of this object
 			m_mcShipV = ResourcePool.Singleton.GetSpaceShipV();
 			m_mcShipH = ResourcePool.Singleton.GetSpaceShipH();
+			
+			( this.Shape as AABB3D ).min = new Vector3D( -10, -10, -10, 1 );
+			( this.Shape as AABB3D ).max = new Vector3D( 10, 10, 10, 1 );	
+			addEventListener(CollisionEvent.TYPE, onCollision);
 		}
 		
 		/**
@@ -166,8 +174,19 @@ package GameLogic.FlyingObject
 			return false;
 		}
 		
-		//-------------------------------- callback function --------------------------------
 		
+		
+		//-------------------------------- callback function --------------------------------
+
+		
+		private function onCollision(e:CollisionEvent):void {
+			// do not collide with my own bullets
+			if(e.collidedObject is Bullet && Bullet(e.collidedObject).owner == this)
+				return;
+			
+			//Alive = false;
+			//trace("Collides with " +e.collidedObject);
+		}		
 	}
 
 }

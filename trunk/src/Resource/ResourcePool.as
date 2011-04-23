@@ -63,59 +63,7 @@ package Resource
 		{
 			return ( new mcPlayerShipHRes );
 		}
-		
-		/**
-		 * @desc	return the mc of P1 bullet v
-		 * @return
-		 */
-		public function GetBulletP1V():MovieClip
-		{
-			var mc:MovieClip = new MovieClip();
-			mc.graphics.beginFill(0xF88017);
-			mc.graphics.drawCircle(0, 0, 5);
-			mc.graphics.endFill();
-			return ( mc );
-		}
-
-		/**
-		 * @desc	return the mc of P1 bullet h
-		 * @return
-		 */
-		public function GetBulletP1H():MovieClip
-		{
-			var mc:MovieClip = new MovieClip();
-			mc.graphics.beginFill(0xF88017);
-			mc.graphics.drawCircle(0, 0, 5);
-			mc.graphics.endFill();
-			return ( mc );
-		}
-		
-		/**
-		 * @desc	return the mc of P2 bullet v
-		 * @return
-		 */
-		public function GetBulletP2V():MovieClip
-		{
-			var mc:MovieClip = new MovieClip();
-			mc.graphics.beginFill(0x1010FF);
-			mc.graphics.drawCircle(0, 0, 5);
-			mc.graphics.endFill();
-			return ( mc );
-		}
-		
-		/**
-		 * @desc	return the mc of P2 bullet h
-		 * @return
-		 */
-		public function GetBulletP2H():MovieClip
-		{
-			var mc:MovieClip = new MovieClip();
-			mc.graphics.beginFill(0x1010FF);
-			mc.graphics.drawCircle(0, 0, 5);
-			mc.graphics.endFill();
-			return ( mc );
-		}
-		
+				
 		private function GetBullet(bulletType:int):MovieClip {
 			var color:uint;
 			
@@ -149,11 +97,43 @@ package Resource
 			return GetBullet(bulletType);
 		}
 		
+		public function GetEnemyV(enemyType:int):MovieClip {
+			return GetEnemy(enemyType);
+		}
+
 		public function GetDummyEnemyV():MovieClip
 		{
 			return new mcDummyVRes;
 		}
+
+		public function GetEnemyH(enemyType:int):MovieClip  {
+			return GetEnemy(enemyType);
+		}
 		
+		
+		private function GetEnemy(enemyType:int):MovieClip {
+			var color:uint;
+			
+			switch(enemyType) {
+				case FlyingObjTypeEnums.Enemy01:
+					color = 0xFF00FF;
+					break;
+				case FlyingObjTypeEnums.Enemy02:
+					color = 0x00FF00;
+					break;
+				case FlyingObjTypeEnums.Enemy03:
+					color = 0x0000FF;
+					break;
+			}
+			
+			var mc:MovieClip = new MovieClip();
+			mc.graphics.beginFill(color);
+			mc.graphics.drawRect(-10, -10, 20, 20);
+			mc.graphics.endFill();
+			return ( mc );
+			
+		}
+
 		public function GetDummyEnemyH():MovieClip
 		{
 			return new mcDummyHRes;

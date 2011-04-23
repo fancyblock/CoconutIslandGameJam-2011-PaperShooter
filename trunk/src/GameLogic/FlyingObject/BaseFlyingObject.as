@@ -22,7 +22,10 @@ package GameLogic.FlyingObject
 		//-------------------------------- private member --------------------------------
 		
 		protected var m_host:ISpace = null;
-		private var m_shape:Shape3D;
+		protected var m_shape:Shape3D;
+		protected var m_mcV:MovieClip;
+		protected var m_mcH:MovieClip;
+		
 		private var m_alive:Boolean = true;
 		
 		//-------------------------------- public function --------------------------------
@@ -93,12 +96,12 @@ package GameLogic.FlyingObject
 		/**
 		 * @desc	return the movieclip for this aspect
 		 */
-		public function get VerticalMC():MovieClip { return null; }
+		public function get VerticalMC():MovieClip { return m_mcV; }
 		
 		/**
 		 * @desc	return the movieclip for this aspect
 		 */
-		public function get HorizontalMC():MovieClip { return null; }
+		public function get HorizontalMC():MovieClip { return m_mcH; }
 		
 		//-------------------------------- private function --------------------------------
 		
