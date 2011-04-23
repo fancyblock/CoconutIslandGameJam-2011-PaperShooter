@@ -1,8 +1,13 @@
 package GameLogic
 {
-	import flash.geom.Vector3D;
+	import Event.CollisionEvent;
+	
+	import GameLogic.FlyingObject.BaseFlyingObject;
+	import GameLogic.FlyingObject.Enemy;
 	import GameLogic.FlyingObject.IFlyingObject;
 	import GameLogic.ISpace;
+	
+	import flash.geom.Vector3D;
 	
 	/**
 	 * ...
@@ -68,6 +73,8 @@ package GameLogic
 		{
 			for each( var obj:IFlyingObject in m_objectList )
 			{
+				// check for collisions
+				checkCollisions(obj);		
 				obj.Update( delta );
 			}
 		}
@@ -82,6 +89,26 @@ package GameLogic
 		}
 		
 		//-------------------------------- private function --------------------------------
+		
+		private function checkCollisions(fromObj:IFlyingObject):void {
+			
+			// only check collisions from Bullet/Player to Enemy
+			if(fromObj is Enemy)
+				return;
+			
+			for each( var toObj:IFlyingObject in m_objectList )
+			{
+				if(toObj == fromObj)
+					continue;
+				
+				if(fromObj.Shape.intersects(toObj.Shape)) {
+					// objects collided, send CollisionEvent message
+					fromObj.dispatchEvent(new CollisionEvent(toObj));
+					toObj.dispatchEvent(new CollisionEvent(fromObj));
+				}
+					
+			}			
+		}
 		
 		//-------------------------------- callback function --------------------------------
 		
