@@ -1,7 +1,8 @@
 package View
 {
-	import flash.display.MovieClip;
 	import GameLogic.FlyingObject.IFlyingObject;
+	
+	import flash.display.MovieClip;
 	
 	/**
 	 * ...
