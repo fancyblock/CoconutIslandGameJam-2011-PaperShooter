@@ -12,7 +12,7 @@ package View
 		
 		//-------------------------------- private member --------------------------------
 		
-		private var m_space:ISpace = null;
+		protected var m_space:ISpace = null;
 		
 		//-------------------------------- public function --------------------------------
 		

@@ -49,7 +49,7 @@ package Screen
 			trace( "[Enter the Game]" );
 			
 			//create the battlefield
-			m_space = new Battlefield( 30, 30, 50 );
+			m_space = new Battlefield( 300, 300, 500 );
 			
 			//attach space to the views
 			m_verView.AttachSpace( m_space );

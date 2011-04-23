@@ -1,6 +1,8 @@
 package View
 {
 	import flash.display.MovieClip;
+	import GameLogic.FlyingObject.FlyingObjTypeEnums;
+	import GameLogic.FlyingObject.IFlyingObject;
 	
 	/**
 	 * ...
@@ -13,6 +15,8 @@ package View
 		
 		//-------------------------------- private member --------------------------------
 		
+		private var m_mcCanva:MovieClip = null;
+		
 		//-------------------------------- public function --------------------------------
 		
 		/**
@@ -23,6 +27,7 @@ package View
 		{
 			super();
 			
+			m_mcCanva = mc;
 		}
 		
 		/**
@@ -30,10 +35,38 @@ package View
 		 */
 		override public function Render():void
 		{
-			//TODO:
+			var objList:Array = this.m_space.ObjectList;
+			
+			//loop for render every object
+			for each( var obj:IFlyingObject in objList )
+			{
+				if ( obj.Alive )
+				{
+					if ( m_mcCanva != obj.VerticalMC.parent )
+					{
+						m_mcCanva.addChild( obj.VerticalMC );
+					}
+					
+					updatePosition( obj );
+				}
+				else
+				{
+					//clean the object
+					if ( m_mcCanva == obj.VerticalMC.parent )
+					{
+						m_mcCanva.removeChild( obj.VerticalMC );
+					}
+				}
+			}
 		}
 		
 		//-------------------------------- private function --------------------------------
+		
+		private function updatePosition( obj:IFlyingObject ):void
+		{
+			obj.VerticalMC.x = obj.Position.x;
+			obj.VerticalMC.y = m_space.ZLength - obj.Position.z;
+		}
 		
 		//-------------------------------- callback function --------------------------------
 		
