@@ -1,20 +1,20 @@
 package Screen
 {
 	import Event.SpawnMonsterEvent;
-	
+	import flash.display.MovieClip;
 	import GameLogic.Battlefield;
 	import GameLogic.EnemySpawner;
-	import GameLogic.FlyingObject.DummyEnemy;
 	import GameLogic.FlyingObject.FlyingObjTypeEnums;
 	import GameLogic.FlyingObject.SpaceShip;
 	import GameLogic.ISpace;
-	
 	import Screen.BasicScreen;
-	
+	import Sound.SoundEnums;
 	import View.HorizontalView;
 	import View.VerticalView;
 	
-	import flash.display.MovieClip;
+	
+	
+	
 	
 	/**
 	 * ...
@@ -49,6 +49,9 @@ package Screen
 			//get all the ui elements
 			m_verView = new VerticalView( this.Canvas.getChildByName( "mcVerticalView" ) as MovieClip );
 			m_horView = new HorizontalView( this.Canvas.getChildByName( "mcHorizontalView" ) as MovieClip );
+			
+			//set the bgm
+			this.setBGM( SoundEnums.BGM_Gaming );
 		}
 		
 		/**
@@ -56,6 +59,8 @@ package Screen
 		 */
 		override public function onShow():void
 		{
+			super.onShow();
+			
 			trace( "[Enter the Game]" );
 			
 			//create the battlefield
@@ -103,6 +108,8 @@ package Screen
 		 */
 		override public function onHide():void
 		{
+			super.onHide();
+			
 			//TODO: implement function
 		}
 		

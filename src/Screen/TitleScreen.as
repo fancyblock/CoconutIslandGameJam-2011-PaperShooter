@@ -1,9 +1,10 @@
 package Screen
 {	
+	import com.pblabs.engine.PBE;
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
 	import flash.events.MouseEvent;
-	import com.pblabs.engine.PBE;
+	import Sound.SoundEnums;
 
 	public class TitleScreen extends BasicScreen
 	{
@@ -27,6 +28,9 @@ package Screen
 			
 			//attach event listener
 			m_btnStart.addEventListener( MouseEvent.CLICK, _onStart );
+			
+			//set the bgm
+			this.setBGM( SoundEnums.BGM_Title );
 		}
 		
 		//------------------------------------------ private function -------------------------------------------

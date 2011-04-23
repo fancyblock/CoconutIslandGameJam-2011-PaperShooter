@@ -52,6 +52,8 @@
     <element path="libs\greensock.swc" />
     <element path="assets\UI.swc" />
     <element path="assets\game.swc" />
+    <element path="libs\greensock.swc" />
+    <element path="assets\sound.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

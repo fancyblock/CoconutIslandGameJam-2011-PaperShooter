@@ -3,6 +3,7 @@ package Screen
 	import flash.text.TextField;
 	import Screen.BasicScreen;
 	import flash.display.MovieClip;
+	import Sound.SoundEnums;
 	
 	/**
 	 * ...
@@ -30,6 +31,9 @@ package Screen
 			
 			//get the ui elements
 			m_scoreBox = this.Canvas.getChildByName( "txtScore" ) as TextField;
+			
+			//set the bgm
+			this.setBGM( SoundEnums.BGM_End );
 			
 			m_scoreBox.text = GlobalWork.Mark.toString();
 		}
