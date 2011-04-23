@@ -1,12 +1,17 @@
 package
 {
+	
+	import GameLogic.FlyingObject.Bullet;
+	
+	import Screen.EndScreen;
+	import Screen.GameScreen;
+	import Screen.ScreenEnums;
+	import Screen.TitleScreen;
+	
 	import com.pblabs.engine.PBE;
+	
 	import flash.display.Sprite;
 	import flash.system.fscommand;
-	import Screen.GameScreen;
-	import Screen.TitleScreen;
-	import Screen.ScreenEnums;
-	import Screen.EndScreen;
 	
 	/**
 	 * @desc	

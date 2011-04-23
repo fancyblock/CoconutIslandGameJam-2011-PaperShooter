@@ -4,6 +4,12 @@ package Event
 	
 	import flash.events.Event;
 	
+	/**
+	 * ...
+	 * @author	Fred
+	 * @date	2011.04.23
+	 */		
+	
 	public class CollisionEvent extends Event
 	{
 		public static const TYPE:String = "EventCollision";
