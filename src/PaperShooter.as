@@ -39,7 +39,7 @@ package
 			//regisit the screens
 			PBE.screenManager.registerScreen( ScreenEnums.Title_Screen, new TitleScreen( TitleScreenRes ) );
 			PBE.screenManager.registerScreen( ScreenEnums.Game_Screen, new GameScreen( GameScreenRes ) );
-			PBE.screenManager.registerScreen( ScreenEnums.End_Screen, new EndScreen( EndScreenRes ) );
+			//PBE.screenManager.registerScreen( ScreenEnums.End_Screen, new EndScreen( EndScreenRes ) );
 			
 			PBE.screenManager.push( ScreenEnums.Title_Screen );
 			
