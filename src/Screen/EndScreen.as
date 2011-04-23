@@ -1,5 +1,6 @@
 package Screen
 {
+	import flash.text.TextField;
 	import Screen.BasicScreen;
 	import flash.display.MovieClip;
 	
@@ -14,6 +15,8 @@ package Screen
 		
 		//-------------------------------- private member --------------------------------
 		
+		private var m_scoreBox:TextField = null;
+		
 		//-------------------------------- public function --------------------------------
 		
 		/**
@@ -25,7 +28,10 @@ package Screen
 			
 			this.setUI( ( new ui ) as MovieClip );
 			
-			//[unfinished]
+			//get the ui elements
+			m_scoreBox = this.Canvas.getChildByName( "txtScore" ) as TextField;
+			
+			m_scoreBox.text = GlobalWork.Mark.toString();
 		}
 		
 		//-------------------------------- private function --------------------------------
