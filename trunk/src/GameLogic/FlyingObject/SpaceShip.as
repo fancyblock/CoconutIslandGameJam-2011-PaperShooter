@@ -107,7 +107,8 @@ package GameLogic.FlyingObject
 			{
 				this.Position.x += SPEED;
 			}
-			else if ( PBE.isKeyDown( InputKey.UP ) )	//up
+			
+			if ( PBE.isKeyDown( InputKey.UP ) )	//up
 			{
 				this.Position.y += SPEED;
 			}

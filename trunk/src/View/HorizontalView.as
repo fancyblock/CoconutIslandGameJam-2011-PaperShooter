@@ -64,7 +64,7 @@ package View
 		private function updatePosition( obj:IFlyingObject ):void
 		{
 			obj.HorizontalMC.x = obj.Position.z;
-			obj.HorizontalMC.y = obj.Position.y;
+			obj.HorizontalMC.y = m_space.YLength - obj.Position.y;
 		}
 		
 		//-------------------------------- callback function --------------------------------
