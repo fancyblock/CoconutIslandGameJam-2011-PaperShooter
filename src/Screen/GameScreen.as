@@ -1,12 +1,16 @@
 package Screen
 {
-	import flash.display.MovieClip;
 	import GameLogic.Battlefield;
+	import GameLogic.FlyingObject.DummyEnemy;
 	import GameLogic.FlyingObject.SpaceShip;
 	import GameLogic.ISpace;
+	
 	import Screen.BasicScreen;
+	
 	import View.HorizontalView;
 	import View.VerticalView;
+	
+	import flash.display.MovieClip;
 	
 	/**
 	 * ...
@@ -58,6 +62,9 @@ package Screen
 			//create your spaceship
 			m_spaceship = new SpaceShip();
 			m_space.AddObject( m_spaceship );
+			
+			// create the first enemy
+			//m_space.AddObject( new DummyEnemy() );
 			
 			
 		}
