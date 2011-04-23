@@ -1,5 +1,8 @@
 package GameLogic.FlyingObject
 {
+	import Math.Collision.Shape3D;
+	
+	import flash.events.Event;
 	import flash.geom.Vector3D;
 	
 	/**
@@ -19,6 +22,10 @@ package GameLogic.FlyingObject
 		function get Alive():Boolean;
 		
 //		function get AABB():
+		
+		function get Shape():Shape3D;
+		
+		function dispatchEvent(e:Event):Boolean;
 	}
 	
 }

@@ -26,6 +26,8 @@
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="libs/PBEngine.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="libs/greensock.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="assets/game.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="assets/UI.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
