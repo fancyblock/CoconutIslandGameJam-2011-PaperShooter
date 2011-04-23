@@ -19,8 +19,6 @@ package GameLogic.FlyingObject
 		
 		//-------------------------------- private member --------------------------------
 		
-		private var m_alive:Boolean;
-		
 		public var m_mcShipV:MovieClip = null;
 		public var m_mcShipH:MovieClip = null;
 		
@@ -31,8 +29,6 @@ package GameLogic.FlyingObject
 		 */
 		public function SpaceShip() 
 		{
-			m_alive = true;
-			
 			//set the mc of this object
 			m_mcShipV = ResourcePool.Singleton.GetSpaceShipV();
 			m_mcShipH = ResourcePool.Singleton.GetSpaceShipH();
@@ -71,8 +67,6 @@ package GameLogic.FlyingObject
 		 */
 		override public function Update( delta:Number ):void
 		{
-			trace( this.Position.x, this.Position.y );
-			
 			//detect the input for move fire
 			inputDectect();
 			
@@ -87,35 +81,51 @@ package GameLogic.FlyingObject
 			return FlyingObjTypeEnums.SpaceShip;
 		}
 		
-		/**
-		 * @desc	return the state of this spaceship
-		 */
-		override public function get Alive():Boolean
-		{
-			return m_alive;
-		}
-		
 		//-------------------------------- private function --------------------------------
 		
 		private function inputDectect():void
 		{
+			var incX:Number = 0;
+			var incY:Number = 0;
+			
 			if ( PBE.isKeyDown( InputKey.A ) )	//left
 			{
-				this.Position.x -= SPEED;
+				incX = -SPEED;
 			}
 			else if ( PBE.isKeyDown( InputKey.D ) )	//right
 			{
-				this.Position.x += SPEED;
+				incX = SPEED;
 			}
 			
 			if ( PBE.isKeyDown( InputKey.UP ) )	//up
 			{
-				this.Position.y += SPEED;
+				incY = SPEED;
 			}
 			else if ( PBE.isKeyDown( InputKey.DOWN ) )	//down
 			{
-				this.Position.y -= SPEED;
+				incY = -SPEED;
 			}
+			
+			//change the position
+			if ( outOfSpace( this.Position.x, this.Position.y, incX, incY ) == false )
+			{
+				this.Position.x += incX;
+				this.Position.y += incY;
+			}
+		}
+		
+		//judge if this object is out of the space or not
+		private function outOfSpace( x:Number, y:Number, xInc:Number, yInc:Number ):Boolean
+		{
+			var nextPosX:Number = x + xInc;
+			var nextPosY:Number = y + yInc;
+			
+			if ( nextPosX < 0 || nextPosY < 0 || nextPosX > m_host.XLength || nextPosY > m_host.YLength )
+			{
+				return true;
+			}
+			
+			return false;
 		}
 		
 		//-------------------------------- callback function --------------------------------

@@ -3,6 +3,7 @@ package GameLogic.FlyingObject
 	import flash.display.MovieClip;
 	import GameLogic.FlyingObject.IFlyingObject;
 	import GameLogic.ISpace;
+	import Math.Collision.AABB3D;
 	
 	import Math.Collision.Shape3D;
 	
@@ -22,6 +23,7 @@ package GameLogic.FlyingObject
 		
 		protected var m_host:ISpace = null;
 		private var m_shape:Shape3D;
+		private var m_alive:Boolean = true;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -30,7 +32,7 @@ package GameLogic.FlyingObject
 		 */
 		public function BaseFlyingObject() 
 		{
-			m_shape = new Shape3D();
+			m_shape = new AABB3D();
 		}
 		
 		/**
@@ -81,7 +83,12 @@ package GameLogic.FlyingObject
 		/**
 		 * @desc	return the state of this object
 		 */
-		public function get Alive():Boolean { return true; }
+		public function get Alive():Boolean { return m_alive; }
+		
+		/**
+		 * @desc	set the alive value
+		 */
+		public function set Alibe( val:Boolean ):void { m_alive = val; }
 		
 		/**
 		 * @desc	return the movieclip for this aspect

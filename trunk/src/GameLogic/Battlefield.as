@@ -1,6 +1,8 @@
 package GameLogic
 {
 	import Event.CollisionEvent;
+	import Math.Collision.AABB3D;
+	import Math.Collision.Shape3D;
 	
 	import GameLogic.FlyingObject.BaseFlyingObject;
 	import GameLogic.FlyingObject.Enemy;
@@ -22,6 +24,8 @@ package GameLogic
 		private var m_objectList:Array = null;
 		private var m_spaceSize:Vector3D = null;
 		
+		private var m_aabb:AABB3D = null;
+		
 		//-------------------------------- public function --------------------------------
 		
 		/**
@@ -31,6 +35,11 @@ package GameLogic
 		{
 			m_spaceSize = new Vector3D( xSize, ySize, zSize );
 			m_objectList = new Array();
+			
+			m_aabb = new AABB3D();
+			m_aabb.position = new Vector3D();
+			m_aabb.min = new Vector3D();
+			m_aabb.max = new Vector3D( xSize, ySize, zSize );
 		}
 		
 		/**
@@ -74,7 +83,8 @@ package GameLogic
 			for each( var obj:IFlyingObject in m_objectList )
 			{
 				// check for collisions
-				checkCollisions(obj);		
+				checkCollisions(obj);
+				checkEscapeObject( obj );
 				obj.Update( delta );
 			}
 		}
@@ -87,6 +97,14 @@ package GameLogic
 		{
 			m_objectList.push( obj );
 			obj.Host = this;
+		}
+		
+		/**
+		 * @desc	return the shape of this space
+		 */
+		public function get AABB():AABB3D
+		{
+			return m_aabb;
 		}
 		
 		//-------------------------------- private function --------------------------------
@@ -109,6 +127,12 @@ package GameLogic
 				}
 					
 			}			
+		}
+		
+		//judge if the object is escape the space, mark alive as false if escaped
+		private function checkEscapeObject( obj:IFlyingObject ):void
+		{
+			//
 		}
 		
 		//-------------------------------- callback function --------------------------------

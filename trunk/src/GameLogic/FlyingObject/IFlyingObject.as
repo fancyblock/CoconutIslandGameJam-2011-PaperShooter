@@ -26,11 +26,11 @@ package GameLogic.FlyingObject
 		
 		function get Alive():Boolean;
 		
+		function set Alibe( val:Boolean ):void;
+		
 		function get VerticalMC():MovieClip;
 		
 		function get HorizontalMC():MovieClip;
-		
-//		function get AABB():
 		
 		function get Shape():Shape3D;
 		
