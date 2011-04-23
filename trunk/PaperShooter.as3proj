@@ -49,7 +49,6 @@
   <libraryPaths>
     <element path="libs\PBEngine.swc" />
     <element path="libs\tweener.swc" />
-    <element path="UI.swc" />
     <element path="assets\UI.swc" />
     <element path="assets\game.swc" />
   </libraryPaths>

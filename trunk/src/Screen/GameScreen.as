@@ -1,7 +1,10 @@
 package Screen
 {
 	import flash.display.MovieClip;
+	import GameLogic.ISpace;
 	import Screen.BasicScreen;
+	import View.HorizontalView;
+	import View.VerticalView;
 	
 	/**
 	 * ...
@@ -14,6 +17,11 @@ package Screen
 		
 		//-------------------------------- private member --------------------------------
 		
+		private var m_verView:VerticalView = null;
+		private var m_horView:HorizontalView = null;
+		
+		private var m_space:ISpace = null;
+		
 		//-------------------------------- public function --------------------------------
 		
 		/**
@@ -25,7 +33,9 @@ package Screen
 			
 			this.setUI( ( new ui ) as MovieClip );
 			
-			//[unfinished]
+			//get all the ui elements
+			m_verView = new VerticalView( this.Canvas.getChildByName( "mcVerticalView" ) as MovieClip );
+			m_horView = new HorizontalView( this.Canvas.getChildByName( "mcHorizontalView" ) as MovieClip );
 		}
 		
 		/**
@@ -33,14 +43,11 @@ package Screen
 		 */
 		override public function onShow():void
 		{
+			//m_space = 
 			
-		}
-		
-		/**
-		 * @desc	callback when hide
-		 */
-		override public function onHide():void
-		{
+			//attach space to the views
+			m_verView.AttachSpace( m_space );
+			m_horView.AttachSpace( m_space );
 			
 		}
 		
@@ -49,7 +56,15 @@ package Screen
 		 */
 		override public function onFrame(delta:Number):void
 		{
-			
+			//TODO: implement function
+		}
+		
+		/**
+		 * @desc	callback when hide
+		 */
+		override public function onHide():void
+		{
+			//TODO: implement function
 		}
 		
 		//-------------------------------- private function --------------------------------
