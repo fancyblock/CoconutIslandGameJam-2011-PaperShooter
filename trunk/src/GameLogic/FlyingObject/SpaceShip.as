@@ -9,6 +9,8 @@ package GameLogic.FlyingObject
 	
 	import Resource.ResourcePool;
 	
+	import Screen.ScreenEnums;
+	
 	import Sound.SoundEnums;
 	import Sound.SoundManager;
 	
@@ -211,6 +213,10 @@ package GameLogic.FlyingObject
 				return;
 			
 			Alive = false;
+			
+			//GlobalWork.Mark = 88;
+			//PBE.screenManager.pop();
+			//PBE.screenManager.push( Screen.ScreenEnums.End_Screen );
 			//trace("Collides with " +e.collidedObject);
 		}		
 	}

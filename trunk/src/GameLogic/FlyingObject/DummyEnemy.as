@@ -17,6 +17,7 @@ package GameLogic.FlyingObject
 		private var _mcV:MovieClip;
 		private var _nextShot:Number;
 		private var _elapsedTime:Number;
+		private var _shootMode:int;
 		
 		override public function get ScoreValue():int
 		{
@@ -33,7 +34,7 @@ package GameLogic.FlyingObject
 			return _mcH;
 		}
 		
-		public function DummyEnemy()
+		public function DummyEnemy(shootMode:int = 1)
 		{
 			super();
 			
@@ -47,6 +48,7 @@ package GameLogic.FlyingObject
 			
 			_nextShot = 0.5 + Math.random() * 2.5;
 			_elapsedTime = 0;
+			_shootMode = shootMode;
 		}
 		
 		override public function onAdd():void 
@@ -73,7 +75,8 @@ package GameLogic.FlyingObject
 				dir.y *= BULLET_SPEED;
 				dir.z *= BULLET_SPEED;
 				
-				shoot(dir);
+				if(_shootMode > 0)
+					shoot(dir);
 			}
 			
 			this.Position.z -= 1;
