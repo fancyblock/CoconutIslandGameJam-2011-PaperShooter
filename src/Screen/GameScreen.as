@@ -1,6 +1,7 @@
 package Screen
 {
 	import Event.SpawnMonsterEvent;
+	import flash.text.TextField;
 	
 	import GameLogic.Battlefield;
 	import GameLogic.EnemySpawner;
@@ -18,7 +19,7 @@ package Screen
 	import flash.display.MovieClip;
 	import flash.display.SimpleButton;
 	import flash.events.MouseEvent;
-	
+	import GameLogic.PlayerStatus;
 	
 	/**
 	 * ...
@@ -40,6 +41,7 @@ package Screen
 		private var m_enemySpawner:EnemySpawner;
 		
 		private var m_btnMode:SimpleButton = null;
+		private var m_scoreText:TextField = null;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -56,6 +58,7 @@ package Screen
 			m_verView = new VerticalView( this.Canvas.getChildByName( "mcVerticalView" ) as MovieClip );
 			m_horView = new HorizontalView( this.Canvas.getChildByName( "mcHorizontalView" ) as MovieClip );
 			m_btnMode = this.Canvas.getChildByName( "btnMode" ) as SimpleButton;
+			m_scoreText = this.Canvas.getChildByName( "txtScore" ) as TextField;
 			
 			//set the bgm
 			this.setBGM( SoundEnums.BGM_Gaming );
@@ -111,6 +114,8 @@ package Screen
 			// focus fix
 			if(stage)
 				stage.focus = this;
+				
+			m_scoreText.text = PlayerStatus.Singleton._score.toString();
 		}
 		
 		/**
