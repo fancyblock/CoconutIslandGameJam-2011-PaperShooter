@@ -14,7 +14,7 @@ package
 	 * @author	Hejiabin
 	 * @date	2011.4.23
 	 */
-	[SWF(width="800", height="600", backgroundColor="0x000000")]
+	[SWF(width="800", height="600", backgroundColor="0x000000", frameRate="30")]
 	public class PaperShooter extends Sprite
 	{
 		//------------------------------ static member -------------------------------------

@@ -26,8 +26,8 @@ package GameLogic.FlyingObject
 	{
 		//-------------------------------- static member ---------------------------------
 		
-		static private const SPEED:Number = 5; 
-		static private const BULLET_SPEED:Number = 120;
+		static private const SPEED:Number = 100; 
+		static private const BULLET_SPEED:Number = 360;
 		static public const PLAYER_1:int = 1;
 		static public const PLAYER_2:int = 2;
 		
@@ -35,6 +35,9 @@ package GameLogic.FlyingObject
 		
 		public var m_mcShipV:MovieClip = null;
 		public var m_mcShipH:MovieClip = null;
+		
+		private var m_player1Shot:Boolean = false;
+		private var m_player2Shot:Boolean = false;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -61,6 +64,8 @@ package GameLogic.FlyingObject
 			this.Position.x = this.m_host.XLength / 2;
 			this.Position.y = this.m_host.YLength / 2;
 			this.Position.z = this.m_host.ZLength / 10;
+			
+			//stage.addEventListener(Event.
 		}
 		
 		/**
@@ -86,7 +91,7 @@ package GameLogic.FlyingObject
 		override public function Update( delta:Number ):void
 		{
 			//detect the input for move fire
-			inputDectect();
+			inputDectect(delta);
 			
 			//TODO:
 		}
@@ -119,45 +124,60 @@ package GameLogic.FlyingObject
 			
 			m_host.AddObject(bullet);
 			
+			SoundManager.Singleton.PlaySE( Sound.SoundEnums.SE_Fire );
+			
 			trace("spawn bullet");
 		}
 		
-		private function inputDectect():void
+		private function inputDectect(delta:Number):void
 		{
 			var incX:Number = 0;
 			var incY:Number = 0;
 			
+			
 			if ( PBE.isKeyDown( InputKey.A ) )	//left
 			{
-				incX = -SPEED;
+				incX = -SPEED * delta;
 			}
 			else if ( PBE.isKeyDown( InputKey.D ) )	//right
 			{
-				incX = SPEED;
+				incX = SPEED * delta;
 			}
 			
 			if ( PBE.isKeyDown( InputKey.UP ) )	//up
 			{
-				incY = SPEED;
+				incY = SPEED * delta;
 			}
 			else if ( PBE.isKeyDown( InputKey.DOWN ) )	//down
 			{
-				incY = -SPEED;
+				incY = -SPEED * delta;
 			}
 			
 			// Player 1 shoots
-			if( PBE.inputManager.keyJustPressed(InputKey.W.keyCode)) {
-				spawnBullet(PLAYER_1);
+			//if( PBE.inputManager.keyJustPressed(InputKey.W.keyCode)) {
+			if( PBE.isKeyDown( InputKey.W )) {
+				if(!m_player1Shot) {
+					spawnBullet(PLAYER_1);
+					m_player1Shot = true;
+				}
 				
-				SoundManager.Singleton.PlaySE( Sound.SoundEnums.SE_Fire );
 			}
+			else
+				m_player1Shot = false;
+			
 
 			// Player 2 shoots
-			if( PBE.inputManager.keyJustPressed(InputKey.SPACE.keyCode)) {
-				spawnBullet(PLAYER_2);
+			//if( PBE.inputManager.keyJustPressed(InputKey.SPACE.keyCode)) {
+			if( PBE.isKeyDown( InputKey.SPACE )) {
+				if(!m_player2Shot) {
+					spawnBullet(PLAYER_2);
+					m_player2Shot = true;
+				}
 				
-				SoundManager.Singleton.PlaySE( Sound.SoundEnums.SE_Fire );
+				
 			}
+			else
+				m_player2Shot = false;
 			
 			//change the position
 			if ( outOfSpace( this.Position.x, this.Position.y, incX, incY ) == false )
