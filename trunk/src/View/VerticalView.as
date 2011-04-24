@@ -64,8 +64,43 @@ package View
 		
 		private function updatePosition( obj:IFlyingObject ):void
 		{
-			obj.VerticalMC.x = obj.Position.x;
-			obj.VerticalMC.y = m_space.ZLength - obj.Position.z;
+			if( GlobalWork.RenderMode == GlobalWork.RenderMode_2D )
+			{
+				obj.VerticalMC.x = obj.Position.x;
+				obj.VerticalMC.y = m_space.ZLength - obj.Position.z;
+			}
+			else if( GlobalWork.RenderMode == GlobalWork.RenderMode_3D )
+			{
+				//perspective projection calculate
+				
+				var x:Number = obj.Position.x;
+				var y:Number = obj.Position.z;
+				var z:Number = obj.Position.y;
+				
+				//(30 margin)	- parameter about perspective
+				var n:Number = 950;
+				var k:Number = 950;
+				var miniSize:Number = 0.76;
+				
+				x = x - 250;
+				y = y - 150;
+				z = 300 - z;
+				
+				var newX:Number = x / ( n + z ) * k;
+				var newY:Number = y / ( n + z ) * k;
+				
+				//set the 2d position
+				obj.VerticalMC.x = newX + 250;
+				obj.VerticalMC.y = m_space.ZLength - ( newY + 150 );
+				
+				//set the scale
+				var scaleVal:Number = z * ( ( miniSize - 1 ) / 300 ) + 1;
+				obj.VerticalMC.scaleX = scaleVal;
+				obj.VerticalMC.scaleY = scaleVal;
+				
+				//set the alpha
+				obj.VerticalMC.alpha = 1 - ( 1 - scaleVal ) * 2;
+			}
 		}
 		
 		//-------------------------------- callback function --------------------------------
