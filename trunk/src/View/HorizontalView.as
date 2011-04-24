@@ -68,6 +68,9 @@ package View
 			{
 				obj.HorizontalMC.x = obj.Position.z;
 				obj.HorizontalMC.y = m_space.YLength - obj.Position.y;
+				obj.HorizontalMC.scaleX = 1.0;
+				obj.HorizontalMC.scaleY = 1.0;
+				obj.HorizontalMC.alpha = 1.0;
 			}
 			else if( GlobalWork.RenderMode == GlobalWork.RenderMode_3D )
 			{

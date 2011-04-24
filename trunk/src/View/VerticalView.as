@@ -68,6 +68,9 @@ package View
 			{
 				obj.VerticalMC.x = obj.Position.x;
 				obj.VerticalMC.y = m_space.ZLength - obj.Position.z;
+				obj.VerticalMC.scaleX = 1.0;
+				obj.VerticalMC.scaleY = 1.0;
+				obj.VerticalMC.alpha = 1.0;
 			}
 			else if( GlobalWork.RenderMode == GlobalWork.RenderMode_3D )
 			{
