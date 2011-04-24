@@ -1,16 +1,23 @@
 package Screen
 {
 	import Event.SpawnMonsterEvent;
-	import flash.display.MovieClip;
+	
 	import GameLogic.Battlefield;
 	import GameLogic.EnemySpawner;
 	import GameLogic.FlyingObject.FlyingObjTypeEnums;
 	import GameLogic.FlyingObject.SpaceShip;
 	import GameLogic.ISpace;
+	
 	import Screen.BasicScreen;
+	
 	import Sound.SoundEnums;
+	
 	import View.HorizontalView;
 	import View.VerticalView;
+	
+	import flash.display.MovieClip;
+	import flash.display.SimpleButton;
+	import flash.events.MouseEvent;
 	
 	
 	/**
@@ -32,6 +39,8 @@ package Screen
 		
 		private var m_enemySpawner:EnemySpawner;
 		
+		private var m_btnMode:SimpleButton = null;
+		
 		//-------------------------------- public function --------------------------------
 		
 		/**
@@ -46,9 +55,13 @@ package Screen
 			//get all the ui elements
 			m_verView = new VerticalView( this.Canvas.getChildByName( "mcVerticalView" ) as MovieClip );
 			m_horView = new HorizontalView( this.Canvas.getChildByName( "mcHorizontalView" ) as MovieClip );
+			m_btnMode = this.Canvas.getChildByName( "btnMode" ) as SimpleButton;
 			
 			//set the bgm
 			this.setBGM( SoundEnums.BGM_Gaming );
+			
+			//attach the event
+			m_btnMode.addEventListener( flash.events.MouseEvent.CLICK, _onChangeMode );
 		}
 		
 		/**
@@ -113,6 +126,18 @@ package Screen
 		//-------------------------------- private function --------------------------------
 		
 		//-------------------------------- callback function --------------------------------
+		
+		private function _onChangeMode( evt:MouseEvent ):void
+		{
+			if( GlobalWork.RenderMode == GlobalWork.RenderMode_2D )
+			{
+				GlobalWork.RenderMode = GlobalWork.RenderMode_3D;
+			}
+			else
+			{
+				GlobalWork.RenderMode = GlobalWork.RenderMode_2D;
+			}
+		}
 		
 	}
 
