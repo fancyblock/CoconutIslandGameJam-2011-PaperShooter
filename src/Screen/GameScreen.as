@@ -54,6 +54,10 @@ package Screen
 			
 			this.setUI( ( new ui ) as MovieClip );
 			
+			// Disable the focus rect.
+			( this.Canvas.getChildByName( "mcVerticalView" ) as MovieClip ).parent.parent.focusRect = false;
+			( this.Canvas.getChildByName( "btnMode" ) as SimpleButton ).focusRect = false;
+			
 			//get all the ui elements
 			m_verView = new VerticalView( this.Canvas.getChildByName( "mcVerticalView" ) as MovieClip );
 			m_horView = new HorizontalView( this.Canvas.getChildByName( "mcHorizontalView" ) as MovieClip );
