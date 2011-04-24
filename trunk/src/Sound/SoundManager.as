@@ -56,7 +56,7 @@ package Sound
 		 */
 		public function PlayBGM( soundId:String ):void
 		{
-			PBE.soundManager.play( m_soundLibs[soundId], soundId );
+			PBE.soundManager.play( m_soundLibs[soundId], soundId, 0.0, 100 );
 		}
 		
 		/**
