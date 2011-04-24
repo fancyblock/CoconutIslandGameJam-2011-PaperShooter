@@ -135,11 +135,11 @@ package GameLogic.FlyingObject
 			var incY:Number = 0;
 			
 			
-			if ( PBE.isKeyDown( InputKey.A ) )	//left
+			if ( PBE.isKeyDown( InputKey.A ) || PBE.isKeyDown( InputKey.LEFT ) )	//left
 			{
 				incX = -SPEED * delta;
 			}
-			else if ( PBE.isKeyDown( InputKey.D ) )	//right
+			else if ( PBE.isKeyDown( InputKey.D ) || PBE.isKeyDown( InputKey.RIGHT ) )	//right
 			{
 				incX = SPEED * delta;
 			}
