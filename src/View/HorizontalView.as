@@ -15,8 +15,6 @@ package View
 		
 		//-------------------------------- private member --------------------------------
 		
-		private var m_mcCanva:MovieClip = null;
-		
 		//-------------------------------- public function --------------------------------
 		
 		/**
@@ -35,6 +33,8 @@ package View
 		 */
 		override public function Render():void
 		{
+			super.Render();
+			
 			var objList:Array = this.m_space.ObjectList;
 			
 			//loop for render every object
@@ -95,8 +95,8 @@ package View
 				
 				//set the scale
 				var scaleVal:Number = z * ( ( miniSize - 1 ) / 300 ) + 1;
-				obj.HorizontalMC.scaleX = scaleVal;
-				obj.HorizontalMC.scaleY = scaleVal;
+				obj.HorizontalMC.scaleX = 1.5 - ( 1 - scaleVal ) * 2;
+				obj.HorizontalMC.scaleY = 1.5 - ( 1 - scaleVal ) * 2;
 				
 				//set the alpha
 				obj.HorizontalMC.alpha = 1 - ( 1 - scaleVal ) * 2;

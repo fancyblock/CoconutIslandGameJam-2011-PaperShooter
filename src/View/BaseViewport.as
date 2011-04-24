@@ -1,6 +1,8 @@
 package View
 {
 	import GameLogic.ISpace;
+	import flash.display.MovieClip;
+	
 	/**
 	 * ...
 	 * @author	Hejiabin
@@ -13,6 +15,8 @@ package View
 		//-------------------------------- private member --------------------------------
 		
 		protected var m_space:ISpace = null;
+		
+		protected var m_mcCanva:MovieClip = null;
 		
 		//-------------------------------- public function --------------------------------
 		
@@ -28,6 +32,14 @@ package View
 		 */
 		public function Render():void
 		{
+			if( GlobalWork.RenderMode == GlobalWork.RenderMode_2D )
+			{
+				( m_mcCanva.getChildByName( "mcFrame" ) as MovieClip ).gotoAndStop( 2 );
+			}
+			else
+			{
+				( m_mcCanva.getChildByName( "mcFrame" ) as MovieClip ).gotoAndStop( 1 );
+			}
 		}
 		
 		/**

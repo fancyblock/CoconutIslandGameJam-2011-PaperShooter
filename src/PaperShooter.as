@@ -41,9 +41,6 @@ package
 			PBE.screenManager.registerScreen( ScreenEnums.Game_Screen, new GameScreen( GameScreenRes ) );
 			PBE.screenManager.registerScreen( ScreenEnums.End_Screen, new EndScreen( EndScreenRes ) );
 			
-			//[for test]
-			GlobalWork.RenderMode = GlobalWork.RenderMode_3D;
-			
 			PBE.screenManager.push( ScreenEnums.Title_Screen );
 			
 		}
