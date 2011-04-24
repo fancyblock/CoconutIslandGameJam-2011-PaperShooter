@@ -59,8 +59,8 @@ package GameLogic
 					break;
 			}
 						
-			monster.Position.x = Math.random() * m_host.XLength - 20;
-			monster.Position.y = Math.random() * m_host.YLength - 20;
+			monster.Position.x = Math.random() * ( m_host.XLength - 40 ) + 20;
+			monster.Position.y = Math.random() * ( m_host.YLength - 40 ) + 20;
 			monster.Position.z = m_host.ZLength - 20;
 			m_host.AddObject(monster);
 			
