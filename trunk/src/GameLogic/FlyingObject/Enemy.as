@@ -1,9 +1,9 @@
 package GameLogic.FlyingObject
 {
 	import Resource.ResourcePool;
-	
+	import Event.EnemyDestroyEvent;
 	import Sound.SoundManager;
-	
+	import GameLogic.PlayerStatus;
 	import flash.display.MovieClip;
 	import flash.geom.Vector3D;
 
@@ -19,6 +19,11 @@ package GameLogic.FlyingObject
 		private var _lockedOnH:Boolean = false;
 		private var _lockedOnMcV:MovieClip;
 		private var _lockedOnMcH:MovieClip;
+		
+		public function get ScoreValue():int
+		{
+			return 0;
+		}
 		
 		public function set LockedOnV( lockedOn:Boolean ):void
 		{
@@ -64,6 +69,8 @@ package GameLogic.FlyingObject
 			
 			_lockedOnMcV = ResourcePool.Singleton.GetLockOn();
 			_lockedOnMcH = ResourcePool.Singleton.GetLockOn();
+			
+			addEventListener( EnemyDestroyEvent.TYPE, PlayerStatus.Singleton.onEnemyDestroyed );
 		}
 		
 		public function GetPlayer():IFlyingObject {
@@ -102,6 +109,6 @@ package GameLogic.FlyingObject
 			
 			SoundManager.Singleton.PlaySE( Sound.SoundEnums.SE_Fire );						
 			
-		} 		
+		} 	
 	}
 }

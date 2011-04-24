@@ -1,15 +1,11 @@
 package GameLogic.FlyingObject
 {
 	import Event.CollisionEvent;
-	
-	import Math.Collision.AABB3D;
-	
-	import Resource.ResourcePool;
-	
-	import Sound.SoundManager;
-	
+	import Event.EnemyDestroyEvent;
 	import flash.display.MovieClip;
 	import flash.geom.Vector3D;
+	import Math.Collision.AABB3D;
+	import Resource.ResourcePool;
 
 	// The simplest form of enemy.
 	// They don't shoot at the player nor move in the x-y plane.
@@ -21,6 +17,11 @@ package GameLogic.FlyingObject
 		private var _mcV:MovieClip;
 		private var _nextShot:Number;
 		private var _elapsedTime:Number;
+		
+		override public function get ScoreValue():int
+		{
+			return 100;
+		}
 		
 		override public function get VerticalMC():MovieClip 
 		{ 
@@ -50,7 +51,6 @@ package GameLogic.FlyingObject
 		
 		override public function onAdd():void 
 		{
-						
 			addEventListener( CollisionEvent.TYPE, onCollision );
 			
 			Alive = true;
@@ -89,9 +89,8 @@ package GameLogic.FlyingObject
 			{
 				removeEventListener( CollisionEvent.TYPE, onCollision );
 				Alive = false;
+				dispatchEvent( new EnemyDestroyEvent() );
 			}
 		}
-		
-
 	}
 }

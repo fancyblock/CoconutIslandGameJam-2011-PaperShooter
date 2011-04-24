@@ -10,6 +10,7 @@ package GameLogic.FlyingObject
 	import com.greensock.easing.Quad;
 	
 	import flash.geom.Vector3D;
+	import Event.EnemyDestroyEvent;
 	
 	/**
 	 * Crazy spinning enemy.
@@ -51,6 +52,10 @@ package GameLogic.FlyingObject
 			_elapsedTime = 0;
 		}
 		
+		override public function get ScoreValue():int
+		{
+			return 300;
+		}
 		
 		private function onCollision(e:CollisionEvent):void {
 			
@@ -61,6 +66,8 @@ package GameLogic.FlyingObject
 				Alive = false;
 				trace("Spinning Enemy is DEAD!!! " +e.collidedObject);
 				TweenMax.killTweensOf(this.Position);
+				
+				dispatchEvent( new EnemyDestroyEvent() );
 			}
 		}
 		
