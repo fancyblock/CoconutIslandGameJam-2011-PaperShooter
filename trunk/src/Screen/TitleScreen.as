@@ -25,6 +25,7 @@ package Screen
 			
 			//get the ui elements
 			m_btnStart = this.Canvas.getChildByName( "btnStart" ) as SimpleButton;
+			m_btnStart.scaleX = m_btnStart.scaleY = 3.0;
 			
 			//attach event listener
 			m_btnStart.addEventListener( MouseEvent.CLICK, _onStart );
