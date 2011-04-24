@@ -127,7 +127,7 @@ package Resource
 					color = 0x00FF00;
 					break;
 				case FlyingObjTypeEnums.Enemy03:
-					color = 0x0000FF;
+					color = 0x00FFFF;
 					break;
 			}
 			
