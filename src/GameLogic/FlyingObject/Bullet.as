@@ -57,7 +57,11 @@ package GameLogic.FlyingObject
 			Position.y += speed.y * delta;
 			Position.z += speed.z * delta;
 			
-			if(Position.z > m_host.ZLength)
+			if(Position.x > m_host.XLength || Position.x < 0)
+				Alive = false;
+			if(Position.y > m_host.YLength || Position.y < 0)
+				Alive = false;
+			if(Position.z > m_host.ZLength || Position.z < 0)
 				Alive = false;
 		}
 	}

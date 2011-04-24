@@ -210,7 +210,7 @@ package GameLogic.FlyingObject
 			if(e.collidedObject is Bullet && Bullet(e.collidedObject).owner == this)
 				return;
 			
-			//Alive = false;
+			Alive = false;
 			//trace("Collides with " +e.collidedObject);
 		}		
 	}

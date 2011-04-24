@@ -1,7 +1,12 @@
 package GameLogic.FlyingObject
 {
-	import flash.display.MovieClip;
 	import Resource.ResourcePool;
+	
+	import Sound.SoundManager;
+	
+	import flash.display.MovieClip;
+	import flash.geom.Vector3D;
+
 	/**
 	 * ...
 	 * @author	Fred
@@ -60,5 +65,43 @@ package GameLogic.FlyingObject
 			_lockedOnMcV = ResourcePool.Singleton.GetLockOn();
 			_lockedOnMcH = ResourcePool.Singleton.GetLockOn();
 		}
+		
+		public function GetPlayer():IFlyingObject {
+			var array:Array = m_host.ObjectList.filter(
+				function(item:*, index:int, array:Array):Boolean {
+					return item is SpaceShip;
+				});			
+			
+			if(array.length > 0)
+				return IFlyingObject(array[0]);
+			
+			return null;
+		}
+		
+		public function GetPlayerDir():Vector3D {
+			var player:IFlyingObject = GetPlayer();
+			
+			if(player == null)
+				return null;
+			
+			var dir:Vector3D = player.Position.subtract(this.Position);
+			dir.normalize();
+			
+			return dir;
+		}
+		
+		public function shoot(speed:Vector3D):void {
+			
+			var bullet:Bullet = new Bullet(FlyingObjTypeEnums.Bullet03, this);
+			bullet.speed = new Vector3D(speed.x, speed.y, speed.z);
+			bullet.Position.x = Position.x;
+			bullet.Position.y = Position.y;
+			bullet.Position.z = Position.z;
+			
+			m_host.AddObject(bullet);
+			
+			SoundManager.Singleton.PlaySE( Sound.SoundEnums.SE_Fire );						
+			
+		} 		
 	}
 }

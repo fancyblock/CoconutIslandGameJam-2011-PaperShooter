@@ -21,11 +21,16 @@ package GameLogic.FlyingObject
 	public class SpinningEnemy extends Enemy
 	{
 		private static const SPEED:Number = 50;
+		private static const BULLET_SPEED:Number = 160;		
 		
 		private var m_speed:Number;
 		private var m_rotation:Number;
 		// this indicates if this enemy moves along the X or Y axis
 		private var m_moveOnX:Boolean;
+		
+		private var _nextShot:Number;
+		private var _elapsedTime:Number;
+		
 		
 		public function SpinningEnemy()
 		{
@@ -41,13 +46,22 @@ package GameLogic.FlyingObject
 			( this.Shape as AABB3D ).max = new Vector3D( 10, 10, 10, 1 );		
 			
 			addEventListener( CollisionEvent.TYPE, onCollision );
+			
+			_nextShot = Math.random() * 1;
+			_elapsedTime = 0;
 		}
 		
 		
 		private function onCollision(e:CollisionEvent):void {
-			Alive = false;
-			trace("Spinning Enemy is DEAD!!! " +e.collidedObject);
-			TweenMax.killTweensOf(this.Position);
+			
+			if ( (e.collidedObject is Bullet && Bullet(e.collidedObject).owner != this) 
+				|| e.collidedObject is SpaceShip)
+			{
+			
+				Alive = false;
+				trace("Spinning Enemy is DEAD!!! " +e.collidedObject);
+				TweenMax.killTweensOf(this.Position);
+			}
 		}
 		
 		
@@ -78,6 +92,24 @@ package GameLogic.FlyingObject
 			
 			m_mcV.rotation = m_rotation;
 			m_mcH.rotation = m_rotation;
+			
+			_elapsedTime += delta;
+			if(_elapsedTime >= _nextShot) {
+				// dont shoot again for now
+				_nextShot = Math.random() * 2;
+				_elapsedTime = 0;
+				
+				var dir:Vector3D = GetPlayerDir();
+				
+				if(dir == null)
+					return;
+				
+				dir.x *= BULLET_SPEED;
+				dir.y *= BULLET_SPEED;
+				dir.z *= BULLET_SPEED;
+				
+				shoot(dir);
+			}			
 			
 			if(Position.z < 0)
 				Alive = false;
