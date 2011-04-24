@@ -9,6 +9,9 @@ package GameLogic.FlyingObject
 	
 	import Resource.ResourcePool;
 	
+	import Sound.SoundEnums;
+	import Sound.SoundManager;
+	
 	import com.pblabs.engine.PBE;
 	import com.pblabs.engine.core.InputKey;
 	
@@ -145,11 +148,15 @@ package GameLogic.FlyingObject
 			// Player 1 shoots
 			if( PBE.inputManager.keyJustPressed(InputKey.W.keyCode)) {
 				spawnBullet(PLAYER_1);
+				
+				SoundManager.Singleton.PlaySE( Sound.SoundEnums.SE_Fire );
 			}
 
 			// Player 2 shoots
 			if( PBE.inputManager.keyJustPressed(InputKey.SPACE.keyCode)) {
 				spawnBullet(PLAYER_2);
+				
+				SoundManager.Singleton.PlaySE( Sound.SoundEnums.SE_Fire );
 			}
 			
 			//change the position
@@ -173,7 +180,6 @@ package GameLogic.FlyingObject
 			
 			return false;
 		}
-		
 		
 		
 		//-------------------------------- callback function --------------------------------
