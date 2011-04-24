@@ -13,9 +13,6 @@ package Screen
 	import View.VerticalView;
 	
 	
-	
-	
-	
 	/**
 	 * ...
 	 * @author	Hejiabin
